@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Agency System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Gas Agency Management System</h1>
+
+    <div class="card">
+        <h2>Add Customer</h2>
+        <input type="text" id="name" placeholder="Customer Name">
+        <input type="text" id="phone" placeholder="Phone Number">
+        <input type="text" id="address" placeholder="Address">
+        <button onclick="addCustomer()">Add Customer</button>
+        <p id="custMsg" class="msg"></p>
+    </div>
+
+    <div class="card">
+        <h2>Customers</h2>
+        <table id="customerTable">
+            <thead>
+                <tr>
+                    <th>ID</th><th>Name</th><th>Phone</th><th>Address</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Book Cylinder</h2>
+        <input type="number" id="custId" placeholder="Customer ID">
+        <button onclick="bookCylinder()">Book</button>
+        <p id="bookMsg" class="msg"></p>
+    </div>
+
+    <div class="card">
+        <h2>Bookings</h2>
+        <ul id="bookingList"></ul>
+    </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

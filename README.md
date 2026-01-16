@@ -1,2 +1,22 @@
-# gas-agency-system-JS
-Gas Agency System is a full-stack web application designed to simplify and automate gas agency operations. It allows admins and users to handle bookings, manage customers, and track cylinder stock efficiently.  
+# Gas Agency Management System (JavaScript)
+
+Frontend web project using HTML, CSS and JavaScript.
+
+## Features
+- Add customers
+- View customers
+- Book gas cylinders
+- View bookings
+- Responsive UI
+- LocalStorage database
+
+## Technologies
+- HTML
+- CSS
+- JavaScript
+
+## How to Run
+Open index.html in any browser.
+
+## Author
+S. Sreemant (Unified Mentor Internship)
