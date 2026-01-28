@@ -1,67 +1,36 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f2f6ff;
-    margin: 0;
-    padding: 0;
+body { font-family: Arial; background:#f2f6ff; padding:20px }
+h1 { text-align:center }
+
+.dashboard {
+  display:grid;
+  grid-template-columns: repeat(4,1fr);
+  gap:10px;
 }
 
-.container {
-    max-width: 900px;
-    margin: auto;
-    padding: 20px;
+.box {
+  background:#2563eb;
+  color:white;
+  padding:15px;
+  border-radius:8px;
+  text-align:center;
+  font-size:18px;
 }
 
-h1 {
-    text-align: center;
-    color: #333;
-}
-
-.card {
-    background: #fff;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+input,button {
+  padding:8px;
+  margin:5px 0;
+  width:200px;
 }
 
 button {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
+  background:#22c55e;
+  color:white;
+  border:none;
+  cursor:pointer;
 }
 
-button:hover {
-    background: #45a049;
-}
+ul { background:white; padding:10px }
 
-.msg {
-    font-size: 14px;
-}
-
-.success { color: green; }
-.error { color: red; }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 8px;
-    text-align: center;
-}
-
-@media(max-width:600px) {
-    .container { padding: 10px; }
+@media(max-width:700px){
+  .dashboard{grid-template-columns:1fr 1fr}
 }
