@@ -1,50 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gas Agency System</title>
-    <link rel="stylesheet" href="css/style.css">
+<title>Gas Agency System</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="container">
-    <h1>Gas Agency Management System</h1>
+<h1>Gas Agency Admin Dashboard</h1>
 
-    <div class="card">
-        <h2>Add Customer</h2>
-        <input type="text" id="name" placeholder="Customer Name">
-        <input type="text" id="phone" placeholder="Phone Number">
-        <input type="text" id="address" placeholder="Address">
-        <button onclick="addCustomer()">Add Customer</button>
-        <p id="custMsg" class="msg"></p>
-    </div>
-
-    <div class="card">
-        <h2>Customers</h2>
-        <table id="customerTable">
-            <thead>
-                <tr>
-                    <th>ID</th><th>Name</th><th>Phone</th><th>Address</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div>
-
-    <div class="card">
-        <h2>Book Cylinder</h2>
-        <input type="number" id="custId" placeholder="Customer ID">
-        <button onclick="bookCylinder()">Book</button>
-        <p id="bookMsg" class="msg"></p>
-    </div>
-
-    <div class="card">
-        <h2>Bookings</h2>
-        <ul id="bookingList"></ul>
-    </div>
+<div class="dashboard">
+  <div class="box">Customers: <span id="cCount">0</span></div>
+  <div class="box">Stock: <span id="stockCount">0</span></div>
+  <div class="box">Deliveries: <span id="dCount">0</span></div>
+  <div class="box">Complaints: <span id="compCount">0</span></div>
 </div>
+
+<hr>
+
+<h2>Add Customer</h2>
+<input id="name" placeholder="Name">
+<input id="phone" placeholder="Phone">
+<button onclick="addCustomer()">Add</button>
+<p id="msg"></p>
+
+<h2>Cylinder Stock</h2>
+<input id="stockInput" placeholder="Add stock">
+<button onclick="addStock()">Update Stock</button>
+
+<h2>Book Cylinder</h2>
+<input id="cid" placeholder="Customer ID">
+<button onclick="bookCylinder()">Book</button>
+
+<h2>Delivery Tracking</h2>
+<ul id="deliveryList"></ul>
+
+<h2>Register Complaint</h2>
+<input id="complaintText" placeholder="Complaint">
+<button onclick="addComplaint()">Submit</button>
+
+<h2>Complaints</h2>
+<ul id="complaintList"></ul>
 
 <script src="js/app.js"></script>
 </body>
 </html>
+
+    
