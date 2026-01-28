@@ -1,82 +1,75 @@
 let customers = JSON.parse(localStorage.getItem("customers")) || [];
-let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+let stock = Number(localStorage.getItem("stock")) || 0;
+let deliveries = JSON.parse(localStorage.getItem("deliveries")) || [];
+let complaints = JSON.parse(localStorage.getItem("complaints")) || [];
 
-function saveData() {
-    localStorage.setItem("customers", JSON.stringify(customers));
-    localStorage.setItem("bookings", JSON.stringify(bookings));
+function save() {
+  localStorage.setItem("customers", JSON.stringify(customers));
+  localStorage.setItem("stock", stock);
+  localStorage.setItem("deliveries", JSON.stringify(deliveries));
+  localStorage.setItem("complaints", JSON.stringify(complaints));
 }
 
-function addCustomer() {
-    const name = document.getElementById("name").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const address = document.getElementById("address").value.trim();
-    const msg = document.getElementById("custMsg");
-
-    if (!name || !phone || !address) {
-        msg.textContent = "All fields are required";
-        msg.className = "msg error";
-        return;
-    }
-
-    const id = customers.length + 1;
-    customers.push({ id, name, phone, address });
-    saveData();
-    loadCustomers();
-
-    msg.textContent = "Customer added successfully";
-    msg.className = "msg success";
-
-    document.getElementById("name").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("address").value = "";
+function updateDashboard(){
+  cCount.innerText = customers.length;
+  stockCount.innerText = stock;
+  dCount.innerText = deliveries.length;
+  compCount.innerText = complaints.length;
 }
 
-function loadCustomers() {
-    const tbody = document.querySelector("#customerTable tbody");
-    tbody.innerHTML = "";
-
-    customers.forEach(c => {
-        const row = `<tr>
-            <td>${c.id}</td>
-            <td>${c.name}</td>
-            <td>${c.phone}</td>
-            <td>${c.address}</td>
-        </tr>`;
-        tbody.innerHTML += row;
-    });
+function addCustomer(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+  if(!name || !phone){msg("Fill details"); return;}
+  customers.push({id:customers.length+1,name,phone});
+  save(); updateDashboard(); msg("Customer added");
 }
 
-function bookCylinder() {
-    const custId = document.getElementById("custId").value;
-    const msg = document.getElementById("bookMsg");
-
-    const customer = customers.find(c => c.id == custId);
-
-    if (!customer) {
-        msg.textContent = "Invalid Customer ID";
-        msg.className = "msg error";
-        return;
-    }
-
-    const date = new Date().toLocaleDateString();
-    bookings.push({ custId, date });
-    saveData();
-    loadBookings();
-
-    msg.textContent = "Cylinder booked successfully";
-    msg.className = "msg success";
-
-    document.getElementById("custId").value = "";
+function addStock(){
+  let s = Number(stockInput.value);
+  if(s<=0) return;
+  stock += s;
+  save(); updateDashboard();
 }
 
-function loadBookings() {
-    const list = document.getElementById("bookingList");
-    list.innerHTML = "";
-
-    bookings.forEach(b => {
-        list.innerHTML += `<li>Customer ID ${b.custId} - ${b.date}</li>`;
-    });
+function bookCylinder(){
+  let id = cid.value;
+  if(stock<=0){alert("Stock empty");return;}
+  let c = customers.find(x=>x.id==id);
+  if(!c){alert("Invalid ID");return;}
+  stock--;
+  deliveries.push("Delivery for Customer "+id+" - Pending");
+  save(); loadDeliveries(); updateDashboard();
 }
 
-loadCustomers();
-loadBookings();
+function loadDeliveries(){
+  deliveryList.innerHTML="";
+  deliveries.forEach(d=>{
+    let li=document.createElement("li");
+    li.innerText=d;
+    deliveryList.appendChild(li);
+  });
+}
+
+function addComplaint(){
+  let text = complaintText.value;
+  if(!text) return;
+  complaints.push(text);
+  save(); loadComplaints(); updateDashboard();
+}
+
+function loadComplaints(){
+  complaintList.innerHTML="";
+  complaints.forEach(c=>{
+    let li=document.createElement("li");
+    li.innerText=c;
+    complaintList.appendChild(li);
+  });
+}
+
+function msg(t){document.getElementById("msg").innerText=t;}
+
+loadDeliveries();
+loadComplaints();
+updateDashboard();
+
